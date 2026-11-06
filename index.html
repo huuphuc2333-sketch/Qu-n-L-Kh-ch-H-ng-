@@ -19,7 +19,6 @@
             </div>
         </header>
 
-        <!-- THÔNG TIN KHÁCH HÀNG -->
         <section class="card">
 
             <h2>THÔNG TIN KHÁCH HÀNG</h2>
@@ -151,102 +150,6 @@
             </form>
 
             <p id="formMessage" class="message"></p>
-
-        </section>
-
-        <!-- DANH SÁCH KHÁCH HÀNG -->
-        <section class="card">
-
-            <div class="section-heading">
-                <div>
-                    <h2>DANH SÁCH KHÁCH HÀNG</h2>
-                    <p id="recordCount">Đang tải dữ liệu...</p>
-                </div>
-            </div>
-
-            <!-- BỘ LỌC -->
-            <div class="filter-grid">
-
-                <input
-                    id="searchInput"
-                    type="search"
-                    placeholder="Tìm theo CIF hoặc tên khách hàng"
-                >
-
-                <select id="stageFilter">
-                    <option value="">Tất cả giai đoạn</option>
-                    <option value="Đã khởi kiện">Đã khởi kiện</option>
-                    <option value="Đã thụ lý">Đã thụ lý</option>
-                    <option value="Thi hành án">Thi hành án</option>
-                    <option value="Đã tất toán">Đã tất toán</option>
-                </select>
-
-                <input
-                    id="dateFilter"
-                    type="date"
-                >
-
-                <button
-                    id="clearFilterBtn"
-                    type="button"
-                    class="btn-secondary"
-                >
-                    XÓA LỌC
-                </button>
-
-            </div>
-
-            <!-- BẢNG DỮ LIỆU -->
-            <div class="table-wrap">
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>CIF</th>
-                            <th>Tên khách hàng</th>
-                            <th>Địa chỉ</th>
-                            <th>Tổng dư nợ</th>
-                            <th>Gốc</th>
-                            <th>Lãi</th>
-                            <th>Tài sản bảo đảm</th>
-                            <th>Giai đoạn</th>
-                            <th>Ngày thực hiện</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="customerTableBody">
-                        <tr>
-                            <td colspan="9" class="empty">
-                                Đang tải dữ liệu...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-            <!-- PHÂN TRANG -->
-            <div class="pagination">
-
-                <button
-                    id="prevBtn"
-                    type="button"
-                    class="btn-secondary"
-                >
-                    TRƯỚC
-                </button>
-
-                <span id="pageInfo">Trang 1</span>
-
-                <button
-                    id="nextBtn"
-                    type="button"
-                    class="btn-secondary"
-                >
-                    SAU
-                </button>
-
-            </div>
 
         </section>
 
