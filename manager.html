@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUẢN LÝ KHÁCH HÀNG XLN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container" id="managerLoginBox">
+        <div class="login-card">
+            <h2>ĐĂNG NHẬP QUẢN LÝ</h2>
+            <p>HỆ THỐNG QUẢN LÝ KHÁCH HÀNG XLN</p>
 
+            <form id="managerLoginForm">
+                <label>Email</label>
+                <input type="email" id="managerEmail" required placeholder="Email quản lý">
+
+                <label>Mật khẩu</label>
+                <input type="password" id="managerPassword" required placeholder="Mật khẩu">
+
+                <button type="submit" id="managerLoginBtn" class="btn-primary">
+                    ĐĂNG NHẬP
+                </button>
+            </form>
+            <p id="managerLoginMessage" class="message"></p>
+        </div>
+    </div>
+
+    <main class="container hidden" id="managerApp">
+        <header class="topbar">
+            <div>
+                <h1>QUẢN LÝ KHÁCH HÀNG XLN</h1>
+                <p>TRANG QUẢN TRỊ HỆ THỐNG</p>
+            </div>
+            <button id="managerLogoutBtn" class="btn-danger">ĐĂNG XUẤT</button>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span>TỔNG KHÁCH HÀNG</span>
+                <strong id="totalCustomers">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>TỔNG DƯ NỢ</span>
+                <strong id="totalDebt">0 VNĐ</strong>
+            </div>
+            <div class="stat-card">
+                <span>ĐÃ KHỞI KIỆN</span>
+                <strong id="countKhoiKien">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>ĐÃ THỤ LÝ</span>
+                <strong id="countThuLy">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>THI HÀNH ÁN</span>
+                <strong id="countTHA">0</strong>
+            </div>
+            <div class="stat-card">
+                <span>ĐÃ TẤT TOÁN</span>
+                <strong id="countTatToan">0</strong>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="section-heading">
+                <div>
+                    <h2>DANH SÁCH KHÁCH HÀNG</h2>
+                    <p id="managerRecordCount">Đang tải dữ liệu...</p>
+                </div>
+                <button id="exportBtn" class="btn-success">XUẤT EXCEL</button>
+            </div>
+
+            <div class="filter-grid">
+                <input id="managerSearch" type="search"
+                    placeholder="Tìm CIF hoặc tên khách hàng">
+
+                <select id="managerStage">
+                    <option value="">Tất cả giai đoạn</option>
+                    <option value="Đã khởi kiện">Đã khởi kiện</option>
+                    <option value="Đã thụ lý">Đã thụ lý</option>
+                    <option value="Thi hành án">Thi hành án</option>
+                    <option value="Đã tất toán">Đã tất toán</option>
+                </select>
+
+                <input id="managerDate" type="date">
+                <button id="managerClearFilter" class="btn-secondary">XÓA LỌC</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CIF</th>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Tổng dư nợ</th>
+                            <th>Gốc</th>
+                            <th>Lãi</th>
+                            <th>Tài sản bảo đảm</th>
+                            <th>Giai đoạn</th>
+                            <th>Ngày thực hiện</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="managerTableBody">
+                        <tr><td colspan="11" class="empty">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button id="managerPrev" class="btn-secondary">TRƯỚC</button>
+                <span id="managerPageInfo">Trang 1</span>
+                <button id="managerNext" class="btn-secondary">SAU</button>
+            </div>
+        </section>
+
+        <section class="card hidden" id="editPanel">
+            <div class="section-heading">
+                <h2>CHỈNH SỬA THÔNG TIN KHÁCH HÀNG</h2>
+                <button type="button" id="closeEditBtn" class="btn-secondary">ĐÓNG</button>
+            </div>
+
+            <form id="editForm">
+                <input type="hidden" id="editId">
+
+                <div class="form-grid">
+                    <div>
+                        <label>Số CIF *</label>
+                        <input id="editCif" required>
+                    </div>
+
+                    <div>
+                        <label>Tên khách hàng *</label>
+                        <input id="editTen" required>
+                    </div>
+
+                    <div class="full-width">
+                        <label>Địa chỉ</label>
+                        <input id="editDiaChi">
+                    </div>
+
+                    <div>
+                        <label>Tổng dư nợ (VNĐ)</label>
+                        <input id="editTongDuNo" class="money-input" inputmode="numeric">
+                    </div>
+
+                    <div>
+                        <label>Gốc (VNĐ)</label>
+                        <input id="editGoc" class="money-input" inputmode="numeric">
+                    </div>
+
+                    <div>
+                        <label>Lãi (VNĐ)</label>
+                        <input id="editLai" class="money-input" inputmode="numeric">
+                    </div>
+
+                    <div class="full-width">
+                        <label>Tài sản bảo đảm</label>
+                        <textarea id="editTaiSan" rows="3"></textarea>
+                    </div>
+
+                    <div>
+                        <label>Giai đoạn xử lý *</label>
+                        <select id="editGiaiDoan" required>
+                            <option value="Đã khởi kiện">Đã khởi kiện</option>
+                            <option value="Đã thụ lý">Đã thụ lý</option>
+                            <option value="Thi hành án">Thi hành án</option>
+                            <option value="Đã tất toán">Đã tất toán</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Ngày thực hiện *</label>
+                        <input id="editNgay" type="date" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="updateBtn" class="btn-primary">
+                        CẬP NHẬT
+                    </button>
+                    <button type="button" id="cancelEditBtn" class="btn-secondary">
+                        HỦY
+                    </button>
+                </div>
+            </form>
+
+            <p id="editMessage" class="message"></p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="config.js"></script>
+    <script src="manager.js"></script>
+</body>
+</html>
