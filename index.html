@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHẬP DỮ LIỆU KHÁCH HÀNG XLN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container" id="loginBox">
+        <div class="login-card">
+            <h2>ĐĂNG NHẬP</h2>
+            <p>HỆ THỐNG QUẢN LÝ KHÁCH HÀNG XLN</p>
 
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="email" required placeholder="Nhập email">
+
+                <label>Mật khẩu</label>
+                <input type="password" id="password" required placeholder="Nhập mật khẩu">
+
+                <button type="submit" class="btn-primary">ĐĂNG NHẬP</button>
+            </form>
+            <p id="loginMessage" class="message"></p>
+        </div>
+    </div>
+
+    <main class="container hidden" id="appBox">
+        <header class="topbar">
+            <div>
+                <h1>NHẬP DỮ LIỆU KHÁCH HÀNG</h1>
+                <p>HỆ THỐNG QUẢN LÝ XỬ LÝ NỢ</p>
+            </div>
+            <button id="logoutBtn" class="btn-danger">ĐĂNG XUẤT</button>
+        </header>
+
+        <section class="card">
+            <h2>THÔNG TIN KHÁCH HÀNG</h2>
+
+            <form id="customerForm">
+                <div class="form-grid">
+                    <div>
+                        <label>Số CIF *</label>
+                        <input id="cif" type="text" required placeholder="Nhập số CIF">
+                    </div>
+
+                    <div>
+                        <label>Tên khách hàng *</label>
+                        <input id="ten_kh" type="text" required placeholder="Nhập tên khách hàng">
+                    </div>
+
+                    <div class="full-width">
+                        <label>Địa chỉ</label>
+                        <input id="dia_chi" type="text" placeholder="Nhập địa chỉ khách hàng">
+                    </div>
+
+                    <div>
+                        <label>Tổng dư nợ (VNĐ)</label>
+                        <input id="tong_du_no" class="money-input" inputmode="numeric" placeholder="0">
+                    </div>
+
+                    <div>
+                        <label>Gốc (VNĐ)</label>
+                        <input id="goc" class="money-input" inputmode="numeric" placeholder="0">
+                    </div>
+
+                    <div>
+                        <label>Lãi (VNĐ)</label>
+                        <input id="lai" class="money-input" inputmode="numeric" placeholder="0">
+                    </div>
+
+                    <div class="full-width">
+                        <label>Tài sản bảo đảm</label>
+                        <textarea id="tai_san_bao_dam" rows="3"
+                            placeholder="Nhập thông tin tài sản bảo đảm"></textarea>
+                    </div>
+
+                    <div>
+                        <label>Giai đoạn xử lý *</label>
+                        <select id="giai_doan" required>
+                            <option value="">-- Chọn giai đoạn --</option>
+                            <option value="Đã khởi kiện">Đã khởi kiện</option>
+                            <option value="Đã thụ lý">Đã thụ lý</option>
+                            <option value="Thi hành án">Thi hành án</option>
+                            <option value="Đã tất toán">Đã tất toán</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Ngày thực hiện *</label>
+                        <input id="ngay_thuc_hien" type="date" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="saveBtn">
+                        LƯU THÔNG TIN
+                    </button>
+                    <button type="reset" class="btn-secondary">LÀM MỚI</button>
+                </div>
+            </form>
+
+            <p id="formMessage" class="message"></p>
+        </section>
+
+        <section class="card">
+            <div class="section-heading">
+                <div>
+                    <h2>DANH SÁCH KHÁCH HÀNG</h2>
+                    <p id="recordCount">Đang tải dữ liệu...</p>
+                </div>
+            </div>
+
+            <div class="filter-grid">
+                <input id="searchInput" type="search"
+                    placeholder="Tìm theo CIF hoặc tên khách hàng">
+
+                <select id="stageFilter">
+                    <option value="">Tất cả giai đoạn</option>
+                    <option value="Đã khởi kiện">Đã khởi kiện</option>
+                    <option value="Đã thụ lý">Đã thụ lý</option>
+                    <option value="Thi hành án">Thi hành án</option>
+                    <option value="Đã tất toán">Đã tất toán</option>
+                </select>
+
+                <input id="dateFilter" type="date">
+                <button id="clearFilterBtn" class="btn-secondary">XÓA LỌC</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CIF</th>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Tổng dư nợ</th>
+                            <th>Gốc</th>
+                            <th>Lãi</th>
+                            <th>Tài sản bảo đảm</th>
+                            <th>Giai đoạn</th>
+                            <th>Ngày thực hiện</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody">
+                        <tr><td colspan="9" class="empty">Đang tải dữ liệu...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button id="prevBtn" class="btn-secondary">TRƯỚC</button>
+                <span id="pageInfo">Trang 1</span>
+                <button id="nextBtn" class="btn-secondary">SAU</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
