@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,73 +7,104 @@
     <title>NHẬP DỮ LIỆU KHÁCH HÀNG XLN</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="login-container" id="loginBox">
-        <div class="login-card">
-            <h2>ĐĂNG NHẬP</h2>
-            <p>HỆ THỐNG QUẢN LÝ KHÁCH HÀNG XLN</p>
 
-            <form id="loginForm">
-                <label>Email</label>
-                <input type="email" id="email" required placeholder="Nhập email">
+    <main class="container" id="appBox">
 
-                <label>Mật khẩu</label>
-                <input type="password" id="password" required placeholder="Nhập mật khẩu">
-
-                <button type="submit" class="btn-primary">ĐĂNG NHẬP</button>
-            </form>
-            <p id="loginMessage" class="message"></p>
-        </div>
-    </div>
-
-    <main class="container hidden" id="appBox">
         <header class="topbar">
             <div>
                 <h1>NHẬP DỮ LIỆU KHÁCH HÀNG</h1>
                 <p>HỆ THỐNG QUẢN LÝ XỬ LÝ NỢ</p>
             </div>
-            <button id="logoutBtn" class="btn-danger">ĐĂNG XUẤT</button>
         </header>
 
+        <!-- THÔNG TIN KHÁCH HÀNG -->
         <section class="card">
+
             <h2>THÔNG TIN KHÁCH HÀNG</h2>
 
             <form id="customerForm">
+
                 <div class="form-grid">
+
+                    <div>
+                        <label>USER CÁN BỘ *</label>
+                        <input
+                            id="user_name"
+                            type="text"
+                            required
+                            placeholder="Nhập mã USER cán bộ"
+                            autocomplete="off"
+                        >
+                    </div>
+
                     <div>
                         <label>Số CIF *</label>
-                        <input id="cif" type="text" required placeholder="Nhập số CIF">
+                        <input
+                            id="cif"
+                            type="text"
+                            required
+                            placeholder="Nhập số CIF"
+                        >
                     </div>
 
                     <div>
                         <label>Tên khách hàng *</label>
-                        <input id="ten_kh" type="text" required placeholder="Nhập tên khách hàng">
+                        <input
+                            id="ten_kh"
+                            type="text"
+                            required
+                            placeholder="Nhập tên khách hàng"
+                        >
                     </div>
 
                     <div class="full-width">
                         <label>Địa chỉ</label>
-                        <input id="dia_chi" type="text" placeholder="Nhập địa chỉ khách hàng">
+                        <input
+                            id="dia_chi"
+                            type="text"
+                            placeholder="Nhập địa chỉ khách hàng"
+                        >
                     </div>
 
                     <div>
                         <label>Tổng dư nợ (VNĐ)</label>
-                        <input id="tong_du_no" class="money-input" inputmode="numeric" placeholder="0">
+                        <input
+                            id="tong_du_no"
+                            class="money-input"
+                            inputmode="numeric"
+                            placeholder="0"
+                        >
                     </div>
 
                     <div>
                         <label>Gốc (VNĐ)</label>
-                        <input id="goc" class="money-input" inputmode="numeric" placeholder="0">
+                        <input
+                            id="goc"
+                            class="money-input"
+                            inputmode="numeric"
+                            placeholder="0"
+                        >
                     </div>
 
                     <div>
                         <label>Lãi (VNĐ)</label>
-                        <input id="lai" class="money-input" inputmode="numeric" placeholder="0">
+                        <input
+                            id="lai"
+                            class="money-input"
+                            inputmode="numeric"
+                            placeholder="0"
+                        >
                     </div>
 
                     <div class="full-width">
                         <label>Tài sản bảo đảm</label>
-                        <textarea id="tai_san_bao_dam" rows="3"
-                            placeholder="Nhập thông tin tài sản bảo đảm"></textarea>
+                        <textarea
+                            id="tai_san_bao_dam"
+                            rows="3"
+                            placeholder="Nhập thông tin tài sản bảo đảm"
+                        ></textarea>
                     </div>
 
                     <div>
@@ -88,22 +120,43 @@
 
                     <div>
                         <label>Ngày thực hiện *</label>
-                        <input id="ngay_thuc_hien" type="date" required>
+                        <input
+                            id="ngay_thuc_hien"
+                            type="date"
+                            required
+                        >
                     </div>
+
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary" id="saveBtn">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        id="saveBtn"
+                    >
                         LƯU THÔNG TIN
                     </button>
-                    <button type="reset" class="btn-secondary">LÀM MỚI</button>
+
+                    <button
+                        type="reset"
+                        class="btn-secondary"
+                    >
+                        LÀM MỚI
+                    </button>
+
                 </div>
+
             </form>
 
             <p id="formMessage" class="message"></p>
+
         </section>
 
+        <!-- DANH SÁCH KHÁCH HÀNG -->
         <section class="card">
+
             <div class="section-heading">
                 <div>
                     <h2>DANH SÁCH KHÁCH HÀNG</h2>
@@ -111,9 +164,14 @@
                 </div>
             </div>
 
+            <!-- BỘ LỌC -->
             <div class="filter-grid">
-                <input id="searchInput" type="search"
-                    placeholder="Tìm theo CIF hoặc tên khách hàng">
+
+                <input
+                    id="searchInput"
+                    type="search"
+                    placeholder="Tìm theo CIF hoặc tên khách hàng"
+                >
 
                 <select id="stageFilter">
                     <option value="">Tất cả giai đoạn</option>
@@ -123,11 +181,24 @@
                     <option value="Đã tất toán">Đã tất toán</option>
                 </select>
 
-                <input id="dateFilter" type="date">
-                <button id="clearFilterBtn" class="btn-secondary">XÓA LỌC</button>
+                <input
+                    id="dateFilter"
+                    type="date"
+                >
+
+                <button
+                    id="clearFilterBtn"
+                    type="button"
+                    class="btn-secondary"
+                >
+                    XÓA LỌC
+                </button>
+
             </div>
 
+            <!-- BẢNG DỮ LIỆU -->
             <div class="table-wrap">
+
                 <table>
                     <thead>
                         <tr>
@@ -142,22 +213,53 @@
                             <th>Ngày thực hiện</th>
                         </tr>
                     </thead>
+
                     <tbody id="customerTableBody">
-                        <tr><td colspan="9" class="empty">Đang tải dữ liệu...</td></tr>
+                        <tr>
+                            <td colspan="9" class="empty">
+                                Đang tải dữ liệu...
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+
             </div>
 
+            <!-- PHÂN TRANG -->
             <div class="pagination">
-                <button id="prevBtn" class="btn-secondary">TRƯỚC</button>
+
+                <button
+                    id="prevBtn"
+                    type="button"
+                    class="btn-secondary"
+                >
+                    TRƯỚC
+                </button>
+
                 <span id="pageInfo">Trang 1</span>
-                <button id="nextBtn" class="btn-secondary">SAU</button>
+
+                <button
+                    id="nextBtn"
+                    type="button"
+                    class="btn-secondary"
+                >
+                    SAU
+                </button>
+
             </div>
+
         </section>
+
     </main>
 
+    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- CẤU HÌNH SUPABASE -->
     <script src="config.js"></script>
+
+    <!-- XỬ LÝ NHẬP LIỆU -->
     <script src="app.js"></script>
+
 </body>
 </html>
